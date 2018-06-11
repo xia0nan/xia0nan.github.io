@@ -11,7 +11,7 @@ title:            Nan
 tagline:          'NUS & Wego'
 description:      'I love data stuff'
 url:              http://xnone.github.io
-baseurl:          /
+baseurl:          ''
 
 author:
   name:           'Xiao Nan'

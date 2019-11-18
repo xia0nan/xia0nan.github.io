@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Almost Year-End
+title: Almost Year End
 ---
 
 I have got a feeling that, especially for my master course, no matter how hard it seems at the very beginning, once you start the progress, it no longer feels the same.

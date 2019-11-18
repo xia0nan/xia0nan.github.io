@@ -39,3 +39,11 @@ validation-report.json
 
 # Folders to ignore
 node_modules
+
+## VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace

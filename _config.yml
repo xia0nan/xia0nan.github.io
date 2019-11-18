@@ -1,6 +1,6 @@
 # Dependencies
-markdown:         redcarpet
-highlighter:      pygments
+markdown:         kramdown
+highlighter:      rouge
 
 # Permalinks
 permalink:        pretty
@@ -10,7 +10,7 @@ title:            Nan
 tagline:          'NUS & Wego'
 description:      'I love data stuff'
 url:              https://nanx.cc/
-baseurl:          ''
+baseurl:          'https://nanx.cc/'
 
 author:
   name:           'Xiao Nan'
@@ -23,5 +23,3 @@ version:          2.1.0
 
 github:
   repo:           https://github.com/xia0nan/
-
-theme: jekyll-theme-minimal

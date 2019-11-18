@@ -8,7 +8,7 @@ permalink:        pretty
 # Setup
 title:            Nan
 tagline:          'NUS & Wego'
-description:      'I love data stuff'
+description:      'I love data stuff. Made by <a href="https://twitter.com/xia0nan" target="_blank">@xia0nan</a>'
 url:              https://nanx.cc/
 baseurl:          'https://nanx.cc/'
 
@@ -19,7 +19,9 @@ author:
 paginate:         5
 
 # Custom vars
-version:          2.1.0
+version:          0.9.0
 
 github:
   repo:           https://github.com/xia0nan/
+
+linkedin:         https://www.linkedin.com/in/xiao-nan/

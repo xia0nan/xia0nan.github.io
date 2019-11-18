@@ -31,18 +31,16 @@ Course | Difficuty | Semester
 [CS6476 Computer Vision](http://www.omscs.gatech.edu/cs-6476-computer-vision) | `Hard` | 19'Fall
 [CS6300 Software Development Process](http://www.omscs.gatech.edu/cs-6300-software-development-process) | `Easy` | 19'Fall
 
-* Sidebar includes support for textual modules and a dynamically generated navigation with active link support
-* Two orientations for content and sidebar, default (left sidebar) and [reverse](https://github.com/poole/lanyon#reverse-layout) (right sidebar), available via `<body>` classes
-* [Eight optional color schemes](https://github.com/poole/hyde#themes), available via `<body>` classes
-
-[Head to the readme](https://github.com/poole/hyde#readme) to learn more.
 
 ### Side tracks
 
-Hyde is by preference a forward-thinking project. In addition to the latest versions of Chrome, Safari (mobile and desktop), and Firefox, it is only compatible with Internet Explorer 9 and above.
+I finished most of the specializations on Coursera while I was with Wego. A bit too much when I'm looking back now. This year I stopped Coursera since I'm already on my master. However, I went back to school to take CS6101 for 2 sems. It was a really difficult course. First semester NLP following Stanford's [CS224N](http://cs224n.stanford.edu/) and the second one Deep Reinforcement Learning following UC Berkeley's [CS285](http://rail.eecs.berkeley.edu/deeprlcourse/).
+
 
 ### Others
 
-Hyde is developed on and hosted with GitHub. Head to the <a href="https://github.com/poole/hyde">GitHub repository</a> for downloads, bug reports, and features requests.
+I believe every now and then you should stop and think about long term goals.
 
-Thanks!
+### Travel
+
+I need to list it separately since I've been spending too much on this category.

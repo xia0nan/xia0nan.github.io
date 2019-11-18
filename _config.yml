@@ -9,12 +9,12 @@ permalink:        pretty
 title:            Nan
 tagline:          'NUS & Wego'
 description:      'I love data stuff'
-url:              http://xnone.github.io
+url:              https://nanx.cc/
 baseurl:          ''
 
 author:
   name:           'Xiao Nan'
-  url:            https://twitter.com/xnone90
+  url:            https://twitter.com/xia0nan/
 
 paginate:         5
 
@@ -22,6 +22,6 @@ paginate:         5
 version:          2.1.0
 
 github:
-  repo:           https://github.com/xnone/
+  repo:           https://github.com/xia0nan/
 
 theme: jekyll-theme-minimal

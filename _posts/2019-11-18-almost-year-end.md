@@ -15,16 +15,19 @@ I left Wego at 31st Jul and joined OCBC 3rd Aug 2019. Didn't take a break. There
 
 These are the projects I'm currently working on:
 
-* Chatbot
-* Cheque OCR
-* Card Fraud
+Course | Difficulty | Start Date | Progress | Note
+--- | --- | --- | --- | ---
+Enterprise Chatbot | `Hard` | Aug'19 | Deployment | Luis.ai & DialogFlow
+Card Fraud | `Hard` | Jul'19 | Phase 2 | Anormaly Detection
+Cheque OCR | `Hard` | Sep'19 | POC | CNN + RNN
+
 
 
 ### Study - Georgia Tech - M.S. CS
 
 During the last days in Wego, apart from Nuno's class, I've also got my GMAT score (700). It wasn't that high but enough for me to start applying some schools. In the end, I didn't try to apply for an MBA program but instead several part-time master courses. I chose the Master of Science in Computer Science from Georgia Institute of Technology, because other programs seem to care more about charging high fees. This program [OMSCS](http://www.omscs.gatech.edu/) seems to be the most affordable choice while the quality seems great from reviews.
 
-The specialization I decide to do is Machine Learning, which is a natural choice since I've been doing it for years. The details of each course I would elaborate on future posts. But here is the general plan:
+The specialization I decide to do is [_**Machine Learning**_](https://www.omscs.gatech.edu/specialization-machine-learning), which is a natural choice since I've been doing it for years. The details of each course I would elaborate on future posts. But here is the general plan:
 
 Course | Difficulty | Semester
 --- | --- | ---
@@ -49,18 +52,19 @@ I'm still making time for Gym and exercise. However, since I injured my ankle, I
 This year I decided to finally pick up my piano classes. What's more, there is a piano school 50m away from my place. The teacher was asking me to try ABRSM grade 7. But I'm too tired to make another commitment. Better to keep it fun. 
 
 These are the 2 songs I would like to master in next year.
-* Piano Sonata No. 8 in C minor, Op. 13 III. Rondo: Allegro
-* Prelude and Fugue in C minor, BWV 847
+* *Piano Sonata No. 8 in C minor, Op. 13 III. Rondo: Allegro*
+* *Prelude and Fugue in C minor, BWV 847*
 
 And by the very end of next year, hopefully, I can start this one:
-* Chopin: Fantaisie-impromptu in C-Sharp Minor, Op. 66
+* *Chopin: Fantaisie-impromptu in C-Sharp Minor, Op. 66*
 
-I believe now and then you should stop and think about long term goals. My next year top priority would still be work and study. But apart from that, instead of more sidetrack studies, I would like to try to get some Kaggle exposure and tech sharing. Use Medium to replicate SOTA results would be a good start, eventually, I'd also like to try a publication. May need some help from Prof on this part.
+I believe now and then you should stop and think about long term goals. My next year top priority would still be work and study. But apart from that, instead of more sidetrack studies, I would like to try to get some **Kaggle** exposure and **tech sharing**. Use **Medium** to replicate SOTA results would be a good start, eventually, I'd also like to try a **publication**. May need some help from Prof on this part.
 
+Data Science is an exhausted journey, I believe the best way through is to keep it fun.
 
 ### Travel
 
-I need to list it separately since I've been spending too much on this category. 
+> I need to list it separately since I've been spending too much on this category. 
 
 Time | Destinations | Notes
 --- | --- | ---

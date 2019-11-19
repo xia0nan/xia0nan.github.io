@@ -4,27 +4,21 @@ title: About
 ---
 
 <p class="message">
-  Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
+  Hey! Here I finally set up my website after years of procrastination. 
 </p>
 
-In the novel, *The Strange Case of Dr. Jeykll and Mr. Hyde*, Mr. Poole is Dr. Jekyll's virtuous and loyal butler. Similarly, Poole is an upstanding and effective butler that helps you build Jekyll themes. It's made by [@mdo](https://twitter.com/mdo).
+This is [_Nan_](https://twitter.com/xia0nan/) currently working with [**OCBC**](https://en.wikipedia.org/wiki/OCBC_Bank) AI Lab in Singapore. I mainly apply NLP/CV/ML techniques to solve problems in banking domain. Previously, I work for [**Wego**](https://www.wego.com), a cool tech company focusing on travel meta search in middle east.
 
-There are currently two themes built on Poole:
+Apart from my work, my major interests are competitive sports like Basketball and Soccer. I play for amateur teams during weekends. I spent quite some time to travel, hiking and diving in different places around the world. I also play piano, jog, play video games and do gym every now and then.
 
-* [Hyde](http://hyde.getpoole.com)
-* [Lanyon](http://lanyon.getpoole.com)
 
-Learn more and contribute on [GitHub](https://github.com/poole).
+![Singapore](https://www.qantas.com/content/travelinsider/en/travel-tips/here-s-what-not-to-do-in-singapore/_jcr_content/parsysTop/hero.img.full.medium.jpg/1533780700103.jpg)
 
-## Setup
+## Find me: 
+(Don't really use Facebook)
 
-Some fun facts about the setup of this project include:
-
-* Built for [Jekyll](http://jekyllrb.com)
-* Developed on GitHub and hosted for free on [GitHub Pages](https://pages.github.com)
-* Coded with [Sublime Text 2](http://sublimetext.com), an amazing code editor
-* Designed and developed while listening to music like [Blood Bros Trilogy](https://soundcloud.com/maddecent/sets/blood-bros-series)
-
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/poole/issues/new) or [ask me on Twitter](https://twitter.com/mdo).
+* [GitHub](https://github.com/xia0nan/)
+* [Linkedin](https://www.linkedin.com/in/xiao-nan/)
+* [Twitter](https://twitter.com/xia0nan/)
 
 Thanks for reading!

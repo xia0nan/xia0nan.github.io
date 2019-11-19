@@ -3,21 +3,23 @@ layout: post
 title: Almost Year End
 ---
 
-I have got a feeling that, especially for my master course, no matter how hard it seems at the very beginning, once you start the progress, it no longer feels the same.
+I have got a feeling that, especially for my master course, no matter how hard one thing seems to be at the very beginning, once you start the progress, it no longer feels the same.
 
-This is my very first try of blogging, so instead of making it a clear story about one particular topic. It is more like a summary of my 2019.
+This is my very first try of blogging, so instead of making it a clear story about one particular topic, it is more like a summary of the progress.
 
 ### Work - OCBC AI Lab
 
-Last year when I was attending Nuno's class on Negotiation, one of the projects was 10 No's. You have to get 10 rejections for the same task, and Nuno said you would soon find out how hard it is to get rejection. That project eventually landed me in OCBC AI Lab.
+Last year when I was attending Nuno's class on Negotiation, one of the projects was 10 No's. You have to get 10 rejections for the same task, and Nuno said you would soon find out how hard it is to get repeatedly rejected. That project eventually landed me in OCBC AI Lab.
 
-I left Wego at 31st Jul and joined OCBC 3rd Aug 2019. Didn't take a break. There are pros & cons. Now I can focus on machine learning projects, not bothering with some BI stuff like making dashboards. However, I no longer have the privilege of doing things all on the cloud.
+I didn't take a break, left Wego at 31st Jul and joined OCBC 3 days later. There are pros & cons between the two, and you can never knew beforehand. Nowadays I can focus on machine learning projects, not bothering with some BI stuff like making dashboards, but I no longer have the privilege of doing things all on the cloud.
+
+Projects in AI Lab are not linear progress. It's more like you keep trying until find all the dead ends. Then restart again. It's quite an experience, I guess that's why they need to hire PhDs. They just so used to this type of back and forth progress. The key is keep trying.
 
 These are the projects I'm currently working on:
 
 Course | Difficulty | Start Date | Progress | Note
---- | --- | --- | --- | ---
-Enterprise Chatbot | `Hard` | Aug'19 | Deployment | Luis.ai & DialogFlow
+------ | ---------- | ---------- | -------- | ----
+Enterprise Chatbot | `Hard` | Aug'18 | Deployment | Luis.ai & DialogFlow
 Card Fraud | `Hard` | Jul'19 | Phase 2 | Anormaly Detection
 Cheque OCR | `Hard` | Sep'19 | POC | CNN + RNN
 
@@ -49,7 +51,7 @@ I finished most of the interesting specializations on Coursera while I was with 
 ### Others
 
 I'm still making time for Gym and exercise. However, since I injured my ankle, I've skipped most of my regular soccer and basketball games.
-This year I decided to finally pick up my piano classes. What's more, there is a piano school 50m away from my place. The teacher was asking me to try ABRSM grade 7. But I'm too tired to make another commitment. Better to keep it fun. 
+This year I decided to finally pick up my piano classes. What's more, there is a piano school 50m away from my place. The teacher was asking me to try ABRSM grade 7. But I'm too tired to make another commitment. Nothing can be enjoyable anymore if you put an exam on it.
 
 These are the 2 songs I would like to master in next year.
 * *Piano Sonata No. 8 in C minor, Op. 13 III. Rondo: Allegro*
@@ -61,9 +63,11 @@ And by the very end of next year, hopefully, I can start this one:
 I believe now and then you should stop and think about long term goals. My next year top priority would still be work and study. But apart from that, instead of more sidetrack studies, I would like to try to get some **Kaggle** exposure and **tech sharing**. Use **Medium** to replicate SOTA results would be a good start, eventually, I'd also like to try a **publication**. May need some help from Prof on this part.
 
 Data Science is an exhausted journey, I believe the best way through is to keep it fun.
+And personaly my satisfaction generally comes from low expectation.
 
 ### Travel
 
+Travel always play a big part of my life.
 > I need to list it separately since I've been spending too much on this category. 
 
 Time | Destinations | Notes
@@ -73,3 +77,4 @@ May'19 | Japan | Kyoto, Osaka, Kobe
 Aug'19 | Central Europe | Croatia, Czech, Slovenia, Germany
 Oct'19 | Myanmar | Yangon, Bagan
 Dec'19 | China, Korea | Shenzhen, Seoul
+

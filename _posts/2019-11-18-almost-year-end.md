@@ -67,14 +67,16 @@ And personaly my satisfaction generally comes from low expectation.
 
 ### Travel
 
-Travel always play a big part of my life.
 > I need to list it separately since I've been spending too much on this category. 
+
+Travel always play a big part of my life. It is such a beautiful world, I need to see it through my own eyes.
 
 Time | Destinations | Notes
 --- | --- | ---
+Dec'18 | China | Beijing, Xi'An
 Jan'19 | China | Dalian
-May'19 | Japan | Kyoto, Osaka, Kobe
-Aug'19 | Central Europe | Croatia, Czech, Slovenia, Germany
+May'19 | Japan | Kobe, Himeji, Kyoto, Osaka
+Aug'19 | Central Europe | Germany, Czech, Slovenia, Croatia, Montenegro, Hungary, Slovakia
 Oct'19 | Myanmar | Yangon, Bagan
-Dec'19 | China, Korea | Shenzhen, Seoul
-
+Dec'19 | China, Korea | Shenzhen, Changsha, Ningbo, Seoul
+Jan'20 | Japan | Nagano

@@ -57,8 +57,9 @@ These are the 2 songs I would like to master in next year.
 * *Piano Sonata No. 8 in C minor, Op. 13 III. Rondo: Allegro*
 * *Prelude and Fugue in C minor, BWV 847*
 
-And by the very end of next year, hopefully, I can start this one:
+And by the very end of next year, hopefully, I can start this two:
 * *Chopin: Fantaisie-impromptu in C-Sharp Minor, Op. 66*
+* *Beethoven: The Piano Sonata No. 14 in C♯ minor "Quasi una fantasia", Op. 27, No. 2*
 
 I believe now and then you should stop and think about long term goals. My next year top priority would still be work and study. But apart from that, instead of more sidetrack studies, I would like to try to get some **Kaggle** exposure and **tech sharing**. Use **Medium** to replicate SOTA results would be a good start, eventually, I'd also like to try a **publication**. May need some help from Prof on this part.
 
@@ -73,10 +74,10 @@ Travel always play a big part of my life. It is such a beautiful world, I need t
 
 Time | Destinations | Notes
 --- | --- | ---
-Dec'18 | China | Beijing, Xi'An
+Dec'18 | China | Beijing, Pingyao, Xi'An
 Jan'19 | China | Dalian
 May'19 | Japan | Kobe, Himeji, Kyoto, Osaka
 Aug'19 | Central Europe | Germany, Czech, Slovenia, Croatia, Montenegro, Hungary, Slovakia
 Oct'19 | Myanmar | Yangon, Bagan
-Dec'19 | China, Korea | Shenzhen, Changsha, Ningbo, Seoul
+Dec'19 | China, Korea | Shenzhen, Chengdu, Chongqing, Ningbo, Seoul, Dalian
 Jan'20 | Japan | Nagano

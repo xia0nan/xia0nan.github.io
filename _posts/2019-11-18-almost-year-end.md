@@ -73,9 +73,9 @@ Travel always play a big part of my life. I always believe that it is such a bea
 
 Time | Places | Sub-places | Score
 ---- | ------ | ---------- | -----
-Dec'18 | China | Beijing, Pingyao, Xi'An | :star::star:
-Jan'19 | China | Dalian | :star::star::star::star::star:
-May'19 | Japan | Kobe, Himeji, Kyoto, Osaka | :star::star::star::star:
-Aug'19 | Central Europe | Germany, Czech, Slovenia, Croatia, Montenegro, Hungary, Slovakia | :star::star::star::star::star:
-Oct'19 | Myanmar | Yangon, Bagan | :star::star::star::star:
+Dec'18 | China | Beijing, Pingyao, Xi'An | <p>&#x2B50;&#x2B50;</p>
+Jan'19 | China | Dalian | <p>&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;</p>
+May'19 | Japan | Kobe, Himeji, Kyoto, Osaka | <p>&#x2B50;&#x2B50;&#x2B50;&#x2B50;</p>
+Aug'19 | Central Europe | Germany, Czech, Slovenia, Croatia, Montenegro, Hungary, Slovakia | <p>&#x2B50;&#x2B50;&#x2B50;&#x2B50;&#x2B50;</p>
+Oct'19 | Myanmar | Yangon, Bagan | <p>&#x2B50;&#x2B50;&#x2B50;&#x2B50;</p>
 Dec'19 | China, Korea | Shenzhen, Chengdu, Chongqing, Ningbo, Seoul, Dalian | :star::star::star:

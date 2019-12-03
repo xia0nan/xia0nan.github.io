@@ -50,8 +50,8 @@ I finished most of the interesting specializations on Coursera while I was with 
 
 ### Others
 
-I'm still making time for Gym and exercise. However, since I injured my ankle, I've skipped most of my regular soccer and basketball games.
-This year I decided to finally pick up my piano classes. What's more, there is a piano school 50m away from my place. The teacher was asking me to try ABRSM grade 7. But I'm too tired to make another commitment. Nothing can be enjoyable anymore if you put an exam on it.
+I'm still making time for Gym and exercise. However, since I injured my ankle, I've skipped most of my regular soccer and basketball games. \
+This year I decided to finally pick up my piano classes. Conveniently, there is a piano school 50m away from my place. Though the teacher asked me to try ABRSM grade 7, I felt too tired to make another commitment. Nothing can be enjoyable anymore if you put an exam on it.
 
 These are the 2 songs I would like to master in next year.
 * *Piano Sonata No. 8 in C minor, Op. 13 III. Rondo: Allegro*
@@ -62,22 +62,20 @@ And by the very end of next year, hopefully, I can start this two:
 * *Beethoven: The Piano Sonata No. 14 in C♯ minor "Quasi una fantasia", Op. 27, No. 2*
 
 I believe now and then you should stop and think about long term goals. My next year top priority would still be work and study. But apart from that, instead of more sidetrack studies, I would like to try to get some **Kaggle** exposure and **tech sharing**. Use **Medium** to replicate SOTA results would be a good start, eventually, I'd also like to try a **publication**. May need some help from Prof on this part.
-
+\
 Data Science is an exhausted journey, I believe the best way through is to keep it fun.
-And personaly my satisfaction generally comes from low expectation.
+> Satisfaction = Perception - Expectation
 
 ### Travel
 
-> I need to list it separately since I've been spending too much on this category. 
+I need to list it separately since I've been spending too much on this category. \
+Travel always play a big part of my life. I always believe that it is such a beautiful world, I need to see it through my own eyes.
 
-Travel always play a big part of my life. It is such a beautiful world, I need to see it through my own eyes.
-
-Time | Destinations | Notes
---- | --- | ---
-Dec'18 | China | Beijing, Pingyao, Xi'An
-Jan'19 | China | Dalian
-May'19 | Japan | Kobe, Himeji, Kyoto, Osaka
-Aug'19 | Central Europe | Germany, Czech, Slovenia, Croatia, Montenegro, Hungary, Slovakia
-Oct'19 | Myanmar | Yangon, Bagan
-Dec'19 | China, Korea | Shenzhen, Chengdu, Chongqing, Ningbo, Seoul, Dalian
-Jan'20 | Japan | Nagano
+Time | Places | Sub-places | Score
+---- | ------ | ---------- | -----
+Dec'18 | China | Beijing, Pingyao, Xi'An | :star::star:
+Jan'19 | China | Dalian | :star::star::star::star::star:
+May'19 | Japan | Kobe, Himeji, Kyoto, Osaka | :star::star::star::star:
+Aug'19 | Central Europe | Germany, Czech, Slovenia, Croatia, Montenegro, Hungary, Slovakia | :star::star::star::star::star:
+Oct'19 | Myanmar | Yangon, Bagan | :star::star::star::star:
+Dec'19 | China, Korea | Shenzhen, Chengdu, Chongqing, Ningbo, Seoul, Dalian | :star::star::star:

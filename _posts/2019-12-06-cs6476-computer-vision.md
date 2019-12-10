@@ -3,6 +3,8 @@ layout: post
 title: CS6476 Computer Vision
 ---
 
+Firstly, this course is very intense to include many topics in one semester. Especially, the weekly assignments are all hard problems, which would take majority of the study time. The ideal way is to go through all materials before the beginning of semester.
+
 Overview:
 
 | Module | Title                                 | Lesson | Topic                                 | Duration (min) |
@@ -75,3 +77,5 @@ Overview:
 | 9C     | 3D perception                         | 9C-L1  | 3D perception                         | 34             |
 | 10A    | The retina                            | 10A-L1 | The retina                            | 38             |
 | 10B    | Vision in the brain                   | 10B-L1 | Vision in the brain                   | 27             |
+
+Fortunately, I have a similar OCR project to do this semester, so some of the methods I do apply to my work. This could be the best case scenario for a part-time Master.

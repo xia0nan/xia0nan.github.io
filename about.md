@@ -20,5 +20,6 @@ Apart from my work, my major interests are competitive sports like Basketball an
 * [GitHub](https://github.com/xia0nan/)
 * [Linkedin](https://www.linkedin.com/in/xiao-nan/)
 * [Twitter](https://twitter.com/xia0nan/)
+* [Reddit](https://www.reddit.com/user/nan_xiao)
 
 Thanks for reading!

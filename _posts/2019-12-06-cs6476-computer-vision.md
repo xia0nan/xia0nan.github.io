@@ -3,6 +3,8 @@ layout: post
 title: CS6476 Computer Vision
 ---
 
+[**Course Link**](https://www.omscs.gatech.edu/cs-6476-computer-vision)
+
 Firstly, this course is very intense to include many topics in one semester. Especially, the weekly assignments are all hard problems, which would take majority of the study time. The ideal way is to go through all materials before the beginning of semester.
 
 Eventually, I scored 89.27% for this course, almost a highest B one can get. I don't really care about getting straight As, but this is a bit unfortunate since I was only 0.7% away. 

@@ -70,7 +70,7 @@ Data Science is an exhausted journey, I believe the best way through is to keep 
 
 I need to list it separately since I've been spending too much on this category.
 
-Travel always play a big part of my life. I believe that it is such a beautiful world, onw need to see it through their own eyes.
+Travel always play a big part of my life. I believe that it is such a beautiful world, one need to see it through their own eyes.
 
 Time | Places | Sub-places | Score
 ---- | ------ | ---------- | -----

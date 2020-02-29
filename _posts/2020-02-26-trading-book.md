@@ -16,10 +16,10 @@ I would like to recommend my favourite setup, by using [AWS Deeplearning AMI](ht
 Another highly recommended tool is Google's [colab](https://colab.research.google.com/). I almost always use it for an experiment. The only thing is we need a bit of setup to use Google drive to insert data. This [post](https://www.marktechpost.com/2019/06/07/how-to-connect-google-colab-with-google-drive/) showed how to connect Colab to Gdrive.
 
 ## 2.Method
-Financial data are normally time series data. So sequential models like LSTM is a naturally a good choice, just like we used in our internal project. But in this notebook, we embedded time-series information into technical indicators, then for each day, apart from price, there are several technical indicators taking historical information as part of the input. In this way, we can use frameworks like Gradient boosted trees or Q-learning to train our dataset.
+Financial data are normally time series data. So sequential models like [*LSTM*](https://colah.github.io/posts/2015-08-Understanding-LSTMs/) is a naturally a good choice, just like we used in our internal project. But in this notebook, we embedded time-series information into technical indicators, then for each day, apart from price, there are several technical indicators taking historical information as part of the input. In this way, we can use frameworks like Gradient boosted trees or Q-learning to train our dataset.
 
 ### 2.1 Assumption
-We assume the Efficient Market Hypothesis is not holding, or at least semi-strong or strong form do not hold. But it should be a common-sense for quantitative trading hedge fund like Renaissance Technologies. There should be some signals or correlations in stock prices, but not for all. We need some methods to find them out.
+We assume the [Efficient Market Hypothesis](https://www.investopedia.com/terms/e/efficientmarkethypothesis.asp) is not holding, or at least semi-strong or strong form do not hold. But it should be a common-sense for quantitative trading hedge fund like Renaissance Technologies. There should be some signals or correlations in stock prices, but not for all. We need some methods to find them out.
 
 ### 2.2 Pipeline Demo
 The processing [pipeline](https://github.com/xia0nan/trading-book#pipeline) is shown in the *README.md*.

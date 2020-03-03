@@ -3,6 +3,8 @@ layout: post
 title: Trading Book
 ---
 
+![Final Result Comparison](/asset/2020-02-26-final-compare.png)
+
 [**Project Link**](https://github.com/xia0nan/trading-book)
 
 ## 1.Background

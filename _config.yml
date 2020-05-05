@@ -1,25 +1,23 @@
-# Dependencies
-markdown:         kramdown
-highlighter:      rouge
-
-# Permalinks
-permalink:        pretty
-
 # Setup
 title:            Nan
-tagline:          'NUS|Gatech|Wego|OCBC'
+tagline:          'NUS|Gatech|Wego|AILab'
 description:      'I love data stuff. Made by <a href="https://twitter.com/xia0nan" target="_blank">@xia0nan</a>'
 url:              https://nanx.cc/
 baseurl:          'https://nanx.cc/'
+paginate:         5
 
+# About and contact
 author:
   name:           'Xiao Nan'
   url:            https://twitter.com/xia0nan/
 
-paginate:         5
+# Gems
+plugins:
+  - jekyll-paginate
+  - jekyll-gist
 
 # Custom vars
-version:          0.9.2
+version:          3.0.0
 
 github:
   repo:           https://github.com/xia0nan/

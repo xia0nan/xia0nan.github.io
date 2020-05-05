@@ -2,7 +2,7 @@
 title:            Nan
 tagline:          'NUS|Gatech|Wego|AILab'
 description:      'I love data stuff. Made by <a href="https://twitter.com/xia0nan" target="_blank">@xia0nan</a>'
-url:              https://nanx.cc/
+url:              https://nanx.cc
 baseurl:          ''
 paginate:         5
 

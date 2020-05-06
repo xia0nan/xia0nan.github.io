@@ -50,7 +50,8 @@ I finished most of the interesting specializations on Coursera while I was with 
 
 ### Others
 
-I'm still making time for Gym and exercise. However, since I injured my ankle, I've skipped most of my regular soccer and basketball games. \
+I'm still making time for Gym and exercise. However, since I injured my ankle, I've skipped most of my regular soccer and basketball games.
+
 This year I decided to finally pick up my piano classes. Conveniently, there is a piano school 50m away from my place. Though the teacher asked me to try ABRSM grade 7, I felt too tired to make another commitment. Nothing can be enjoyable anymore if you put an exam on it.
 
 These are the 2 songs I would like to master in next year.
@@ -62,7 +63,7 @@ And by the very end of next year, hopefully, I can start this two:
 * *Beethoven: The Piano Sonata No. 14 in C♯ minor "Quasi una fantasia", Op. 27, No. 2*
 
 I believe now and then you should stop and think about long term goals. My next year top priority would still be work and study. But apart from that, instead of more sidetrack studies, I would like to try to get some **Kaggle** exposure and **tech sharing**. Use **Medium** to replicate SOTA results would be a good start, eventually, I'd also like to try a **publication**. May need some help from Prof on this part.
-\
+
 Data Science is an exhausted journey, I believe the best way through is to keep it fun.
 > Satisfaction = Perception - Expectation
 

@@ -3,8 +3,6 @@ layout: post
 title: Sentiment Analysis from Word2Vec to BERT - A Comprehensive Guide
 ---
 
-# Sentiment Analysis from Word2Vec to BERT: A Comprehensive Guide
-
 ## Table of Contents
 
 - [Overview](#overview)

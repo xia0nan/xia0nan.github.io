@@ -1,0 +1,11 @@
+- type: github
+  icon: fab fa-github
+- type: linkedin
+  icon: fab fa-linkedin
+  url: https://www.linkedin.com/in/xiao-nan/
+- type: twitter
+  icon: fa-brands fa-x-twitter
+- type: feed
+  icon: fas fa-rss
+  url: /atom.xml
+  noblank: true

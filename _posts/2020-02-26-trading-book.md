@@ -1,6 +1,9 @@
 ---
 layout: post
 title: Trading Book
+archived: true
+hidden: true
+permalink: /2020/02/26/trading-book.html
 ---
 
 ![Final Result Comparison](/images/2020-02-26-final-compare.png)

@@ -1,0 +1,8 @@
+# Override only copyright wording; inherit the remaining English UI from Chirpy.
+copyright:
+  license:
+    template: false
+    name: ""
+    link: ""
+  brief: All rights reserved.
+  verbose: All rights reserved unless otherwise noted.

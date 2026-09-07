@@ -1,6 +1,9 @@
 ---
 layout: post
 title: CS6300 Software Development Process
+archived: true
+hidden: true
+permalink: /2020/01/01/cs6300-software-development-process.html
 ---
 
 [**Course Link**](http://www.omscs.gatech.edu/cs-6300-software-development-process)

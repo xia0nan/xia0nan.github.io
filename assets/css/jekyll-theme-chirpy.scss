@@ -1,0 +1,29 @@
+---
+---
+
+@use 'main
+{%- if jekyll.environment == "production" -%}
+  .bundle
+{%- endif -%}
+';
+
+/* Keep Chirpy's visual language; give the introduction room to breathe. */
+#sidebar #avatar:empty { display: none; }
+.home-intro { padding-top: 1.5rem; }
+.home-intro #intro-title {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.2;
+  margin-top: 0.75rem;
+  max-width: 22ch;
+}
+.home-intro > p { max-width: 62ch; }
+.intro-role { color: var(--text-muted-color); font-size: 1rem; }
+.intro-links { display: flex; flex-wrap: wrap; gap: 1rem 1.75rem; margin-top: 1.75rem; }
+.archive-notice {
+  border-left: 3px solid var(--link-color);
+  background: var(--prompt-info-bg);
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+.archive-notice p { margin: 0.5rem 0; }

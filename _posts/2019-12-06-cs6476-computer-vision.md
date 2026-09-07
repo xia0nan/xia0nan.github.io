@@ -1,6 +1,9 @@
 ---
 layout: post
 title: CS6476 Computer Vision
+archived: true
+hidden: true
+permalink: /2019/12/06/cs6476-computer-vision.html
 ---
 
 [**Course Link**](https://www.omscs.gatech.edu/cs-6476-computer-vision)

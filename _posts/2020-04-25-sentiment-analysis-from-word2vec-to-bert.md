@@ -1,6 +1,9 @@
 ---
 layout: post
 title: Sentiment Analysis from Word2Vec to BERT - A Comprehensive Guide
+archived: true
+hidden: true
+permalink: /2020/04/25/sentiment-analysis-from-word2vec-to-bert.html
 ---
 
 ## Table of Contents

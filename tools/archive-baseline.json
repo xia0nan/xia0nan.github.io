@@ -1,0 +1,44 @@
+[
+  {
+    "source": "_posts/2019-11-18-almost-year-end.md",
+    "title": "Almost Year End",
+    "date": "2019-11-18",
+    "url": "/2019/11/18/almost-year-end.html",
+    "body_sha256": "25e3e8e1640b209f1d7626da8fd14ddc3d43d069f018c424c4a731a3c973583d"
+  },
+  {
+    "source": "_posts/2019-12-06-cs6476-computer-vision.md",
+    "title": "CS6476 Computer Vision",
+    "date": "2019-12-06",
+    "url": "/2019/12/06/cs6476-computer-vision.html",
+    "body_sha256": "8bac75990d8a81aee22c0523786fca4545e04a2c72144370ac4cceb9932ed141"
+  },
+  {
+    "source": "_posts/2020-01-01-cs6300-software-development-process.md",
+    "title": "CS6300 Software Development Process",
+    "date": "2020-01-01",
+    "url": "/2020/01/01/cs6300-software-development-process.html",
+    "body_sha256": "a8aa5f6f8cc8b7880240297c1653a95db8fb2ffb571afeaedfce7a6f6c6f3866"
+  },
+  {
+    "source": "_posts/2020-02-26-trading-book.md",
+    "title": "Trading Book",
+    "date": "2020-02-26",
+    "url": "/2020/02/26/trading-book.html",
+    "body_sha256": "1372a2c831e72e52cc8e963b51333884c5c7767aaae29e5aedbb50816541e804"
+  },
+  {
+    "source": "_posts/2020-04-25-sentiment-analysis-from-word2vec-to-bert.md",
+    "title": "Sentiment Analysis from Word2Vec to BERT - A Comprehensive Guide",
+    "date": "2020-04-25",
+    "url": "/2020/04/25/sentiment-analysis-from-word2vec-to-bert.html",
+    "body_sha256": "8c306cf1038535a584653a588bab8d9ccfe3784ca0ab844795b2265869d0e45d"
+  },
+  {
+    "source": "_posts/2020-12-14-bayesian-statistics.md",
+    "title": "ISYE6420 Bayesian Statistics",
+    "date": "2020-12-14",
+    "url": "/2020/12/14/bayesian-statistics.html",
+    "body_sha256": "e9a6dc65ad649ff80a11da94e8f97cb178845b73955c78af5fe9a8aaff3e83b7"
+  }
+]

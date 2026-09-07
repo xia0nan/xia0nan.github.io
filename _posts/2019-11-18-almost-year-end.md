@@ -1,6 +1,9 @@
 ---
 layout: post
 title: Almost Year End
+archived: true
+hidden: true
+permalink: /2019/11/18/almost-year-end.html
 ---
 
 I have got a feeling that, especially for my master course, no matter how hard one thing seems to be at the very beginning, once you start the progress, it no longer feels the same.

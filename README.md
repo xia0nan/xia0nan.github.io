@@ -1,118 +1,78 @@
-# Hyde
+# nanx.cc
 
-Hyde is a brazen two-column [Jekyll](http://jekyllrb.com) theme that pairs a prominent sidebar with uncomplicated content. It's based on [Poole](http://getpoole.com), the Jekyll butler.
+Shawn Xiao’s technical blog, built with Jekyll and the pinned Chirpy 7.6.0 gem. GitHub Pages serves the site at <https://nanx.cc>.
 
-![Hyde screenshot](https://f.cloud.github.com/assets/98681/1831228/42af6c6a-7384-11e3-98fb-e0b923ee0468.png)
+## Local preview
 
+Use Ruby 3.4.10 (see `.ruby-version`). On macOS with Homebrew:
 
-## Contents
-
-- [Usage](#usage)
-- [Options](#options)
-  - [Sidebar menu](#sidebar-menu)
-  - [Sticky sidebar content](#sticky-sidebar-content)
-  - [Themes](#themes)
-  - [Reverse layout](#reverse-layout)
-- [Development](#development)
-- [Author](#author)
-- [License](#license)
-
-
-## Usage
-
-Hyde is a theme built on top of [Poole](https://github.com/poole/poole), which provides a fully furnished Jekyll setup—just download and start the Jekyll server. See [the Poole usage guidelines](https://github.com/poole/poole#usage) for how to install and use Jekyll.
-
-
-## Options
-
-Hyde includes some customizable options, typically applied via classes on the `<body>` element.
-
-
-### Sidebar menu
-
-Create a list of nav links in the sidebar by assigning each Jekyll page the correct layout in the page's [front-matter](http://jekyllrb.com/docs/frontmatter/).
-
+```sh
+brew install ruby@3.4
+export PATH="/opt/homebrew/opt/ruby@3.4/bin:$PATH"
+bundle config set --local path vendor/bundle
+bundle install
+bundle exec jekyll serve
 ```
+
+Open <http://127.0.0.1:4000>. Jekyll reloads content changes; restart the server after changing `_config.yml`. Dependencies and build output are ignored by Git. Intel Macs should use their Homebrew installation’s Ruby path.
+
+## Validation
+
+```sh
+JEKYLL_ENV=production bundle exec jekyll build
+bundle exec ruby tools/verify_site.rb
+bundle exec ruby tools/test_home.rb
+bundle exec htmlproofer _site --disable-external --no-enforce-https
+```
+
+The checks verify the six historical article bodies against the pre-migration baseline, URLs, archive/search/feed visibility, canonical metadata, redirects, and exclusion of unpublished material. Temporary fixtures test an empty homepage, pinned posts and two-page pagination without adding content to the real site.
+
+External link checking and HTTPS enforcement for outbound links are disabled because historical articles retain their original HTTP references. Internal links and fragment targets remain checked. The website itself uses HTTPS.
+
+## Publishing
+
+The `Build and Deploy` GitHub Actions workflow validates pull requests and deploys successful builds from `master`. GitHub Pages must use **GitHub Actions** as its build source. Keep the `CNAME` file and the custom domain setting at `nanx.cc`, with HTTPS enforced.
+
+Before deployment, all build and verification steps must pass. After deployment, check Home, About, Archives, a historical article, `/atom.xml`, and the compatibility redirects. For rollback, revert the relaunch commit and restore the previous Pages build source (`master`, repository root, legacy build); do not reset repository history.
+
+## Writing next
+
+Keep proposed articles in [the content roadmap](docs/content-roadmap.md) until they are ready. `docs/`, `_drafts/`, and `tools/` do not ship in the generated website. The reference remains visible in this public source repository.
+
+Publish an article as `_posts/YYYY-MM-DD-slug.md`:
+
+```yaml
 ---
-layout: page
-title: About
+layout: post
+title: Your finished article title
+categories: [AI Systems]
+tags: [agents, system-design]
+# pin: true
+# math: true
+# mermaid: true
+# last_modified_at: YYYY-MM-DD
 ---
 ```
 
-**Why require a specific layout?** Jekyll will return *all* pages, including the `atom.xml`, and with an alphabetical sort order. To ensure the first link is *Home*, we exclude the `index.html` page from this list by specifying the `page` layout.
+New posts automatically appear on Home and in the feed, search and archives. Pin up to three cornerstone articles once published. Set `last_modified_at` explicitly only for substantive content updates; theme changes should not make articles look newly edited. Comments, analytics and PWA are disabled.
 
+Categories and Tags navigation, a curated Projects page, and new articles are deferred. The category/tag generators are available for future writing. Add navigation tabs only when useful content exists.
 
-### Sticky sidebar content
+## Historical archives
 
-By default Hyde ships with a sidebar that affixes its content to the bottom of the sidebar. You can optionally disable this by removing the `.sidebar-sticky` class from the sidebar's `.container`. Sidebar content will then normally flow from top to bottom.
+The six original articles remain in `_posts` with `archived: true`, `hidden: true`, and fixed original permalinks. Keep both flags together. `hidden` removes them from homepage pagination; `archived` adds the historical notice and removes them from Recently Updated. Their bodies, dates, titles, images and heading anchors are preserved. Do not remove the fixed permalinks when adding categories.
 
-```html
-<!-- Default sidebar -->
-<div class="sidebar">
-  <div class="container sidebar-sticky">
-    ...
-  </div>
-</div>
+Compatibility routes:
 
-<!-- Modified sidebar -->
-<div class="sidebar">
-  <div class="container">
-    ...
-  </div>
-</div>
-```
+- Original dated `.html` article URLs continue to serve the articles directly.
+- `/about.html` redirects to `/about/`.
+- `/page2/` redirects to `/archives/`; new homepage pagination uses `/page/:num/`.
+- `/atom.xml` retains the original feed endpoint and article entry IDs.
 
+The migration baseline in `tools/archive-baseline.json` protects the original bodies. If an intentional historical correction is needed later, review it explicitly before updating that baseline.
 
-### Themes
+## Theme maintenance
 
-Hyde ships with eight optional themes based on the [base16 color scheme](https://github.com/chriskempson/base16). Apply a theme to change the color scheme (mostly applies to sidebar and links).
+Most UI comes from the gem. Local overrides provide the introduction and empty-home behavior, archive notice, filtered Recently Updated panel, accessible viewport metadata, existing favicon links, feed discovery, and copyright wording. Review those overrides against upstream when upgrading the pinned theme. Styles retain Chirpy’s standard light/dark appearance.
 
-![Hyde in red](https://f.cloud.github.com/assets/98681/1831229/42b0b354-7384-11e3-8462-31b8df193fe5.png)
-
-There are eight themes available at this time.
-
-![Hyde theme classes](https://f.cloud.github.com/assets/98681/1817044/e5b0ec06-6f68-11e3-83d7-acd1942797a1.png)
-
-To use a theme, add anyone of the available theme classes to the `<body>` element in the `default.html` layout, like so:
-
-```html
-<body class="theme-base-08">
-  ...
-</body>
-```
-
-To create your own theme, look to the Themes section of [included CSS file](https://github.com/poole/hyde/blob/master/public/css/hyde.css). Copy any existing theme (they're only a few lines of CSS), rename it, and change the provided colors.
-
-### Reverse layout
-
-![Hyde with reverse layout](https://f.cloud.github.com/assets/98681/1831230/42b0d3ac-7384-11e3-8d54-2065afd03f9e.png)
-
-Hyde's page orientation can be reversed with a single class.
-
-```html
-<body class="layout-reverse">
-  ...
-</body>
-```
-
-
-## Development
-
-Hyde has two branches, but only one is used for active development.
-
-- `master` for development.  **All pull requests should be submitted against `master`.**
-- `gh-pages` for our hosted site, which includes our analytics tracking code. **Please avoid using this branch.**
-
-
-## Author
-
-**Mark Otto**
-- <https://github.com/mdo>
-- <https://twitter.com/mdo>
-
-
-## License
-
-Open sourced under the [MIT license](LICENSE.md).
-
-<3
+The original Hyde license remains in `LICENSE.md`. See `THIRD_PARTY_NOTICES.md` for the license covering adapted Chirpy templates. Theme migration does not grant a new license to the articles.

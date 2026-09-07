@@ -1,6 +1,9 @@
 ---
 layout: post
 title: ISYE6420 Bayesian Statistics
+archived: true
+hidden: true
+permalink: /2020/12/14/bayesian-statistics.html
 ---
 
 [**Course Link**](https://omscs.gatech.edu/isye-6420-bayesian-statistics)

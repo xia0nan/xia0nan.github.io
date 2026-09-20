@@ -47,7 +47,7 @@ layout: post
 title: Your finished article title
 categories: [AI Systems]
 tags: [agents, system-design]
-comments: true
+# comments: false # optional: disable discussion for this article
 # pin: true
 # math: true
 # mermaid: true
@@ -59,7 +59,7 @@ New posts automatically appear on Home and in the feed, search and archives. Pin
 
 Posts include LinkedIn, X, Reddit and Copy link sharing. Configure the platform links in `_data/share.yml`; Copy link comes from Chirpy.
 
-Comments use Giscus with this repository's GitHub Discussions and the Announcements category. Install the [Giscus GitHub App](https://github.com/apps/giscus) for this repository before publishing a post with `comments: true`. Posts without that flag, including the historical archives, keep comments disabled. Discussion mapping uses the article pathname with strict matching, so keep published article permalinks stable.
+Comments use Giscus with this repository's GitHub Discussions and the Announcements category. The [Giscus GitHub App](https://github.com/apps/giscus) is installed for this repository. All published articles, including the historical archives, show comments by default; set `comments: false` in an article's front matter to disable them. Drafts keep comments disabled. Discussion mapping uses the article pathname with strict matching, so keep published article permalinks stable.
 
 Categories and Tags navigation, a curated Projects page, and new articles are deferred. The category/tag generators are available for future writing. Add navigation tabs only when useful content exists.
 

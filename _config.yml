@@ -121,7 +121,7 @@ actions:
     static_url: false # [ true | false ]
 
 comments:
-  # Individual posts opt in with comments: true; historical posts stay disabled.
+  # Posts show comments by default; individual posts can set comments: false.
   provider: giscus
   # The provider options are as follows:
   disqus:
@@ -191,7 +191,7 @@ defaults:
       type: posts
     values:
       layout: post
-      comments: false
+      comments: true
       toc: true # Display TOC column in posts.
       # DO NOT modify the following parameter unless you are confident enough
       # to update the code of all other post links in this project.

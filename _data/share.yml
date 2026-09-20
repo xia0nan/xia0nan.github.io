@@ -1,0 +1,10 @@
+platforms:
+  - type: LinkedIn
+    icon: fab fa-linkedin
+    link: https://www.linkedin.com/sharing/share-offsite/?url=URL
+  - type: X
+    icon: fa-brands fa-x-twitter
+    link: https://twitter.com/intent/tweet?text=TITLE&url=URL
+  - type: Reddit
+    icon: fab fa-reddit
+    link: https://www.reddit.com/submit?url=URL&title=TITLE

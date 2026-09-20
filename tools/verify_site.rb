@@ -39,6 +39,7 @@ BASELINE.each do |post|
   check(metadata["hidden"] && metadata["archived"], "archive flags: #{post['source']}")
   check(metadata["permalink"] == post["url"], "permalink preserved: #{post['source']}")
   page = html(post.fetch("url").delete_prefix("/"))
+  check(!page.to_html.include?("https://giscus.app/client.js"), "archive comments remain disabled")
   check(page.at_css("article h1")&.text == post["title"], "article title: #{post['url']}")
   check(page.at_css(".archive-notice"), "historical notice: #{post['url']}")
   check(page.at_css('link[rel="canonical"]')&.[]("href") == "https://nanx.cc#{post['url']}", "article canonical: #{post['url']}")

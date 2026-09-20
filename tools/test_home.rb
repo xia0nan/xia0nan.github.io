@@ -40,13 +40,21 @@ Dir.mktmpdir("nanx-home-test-") do |temp|
   check(!File.exist?(File.join(output, "page")), "no empty pagination pages")
 
   (1..12).each do |number|
-    post = "---\nlayout: post\ntitle: Fixture #{number}\npin: #{number <= 3}\n---\nTemporary validation content.\n"
+    comments = number == 1 ? "comments: true\n" : ""
+    post = "---\nlayout: post\ntitle: Fixture #{number}\npin: #{number <= 3}\n#{comments}---\nTemporary validation content.\n"
     File.write(File.join(source, "_posts", "2026-01-#{format('%02d', number)}-fixture-#{number}.md"), post)
   end
   # Even an accidentally pinned archive must stay off the homepage.
   archived = Dir.glob(File.join(source, "_posts", "*.md")).find { |p| File.read(p).include?("archived: true") }
   File.write(archived, File.read(archived).sub("archived: true", "archived: true\npin: true"))
   build(source, output, root)
+  opted_in = File.read(File.join(output, "posts/fixture-1/index.html"))
+  default_post = File.read(File.join(output, "posts/fixture-2/index.html"))
+  check(opted_in.include?("https://giscus.app/client.js"), "opted-in articles load Giscus")
+  check(!default_post.include?("https://giscus.app/client.js"), "comments remain opt-in")
+  sharing = Nokogiri::HTML5(opted_in).css(".share-icons")
+  check(sharing.css("a").map { |a| a["aria-label"] } == ["LinkedIn", "X", "Reddit"], "configured sharing platforms render")
+  check(sharing.at_css("button#copy-link"), "built-in Copy link remains available")
   expected = [3, 2, 1, 12, 11, 10, 9, 8, 7, 6, 5, 4].map { |n| "/posts/fixture-#{n}/" }
   check(previews(File.join(output, "index.html")) == expected.first(10), "pinned articles first, no archived cards")
   check(previews(File.join(output, "page/2/index.html")) == expected.last(2), "pagination has no duplicates or omissions")
@@ -55,4 +63,4 @@ Dir.mktmpdir("nanx-home-test-") do |temp|
   check(page_two.at_css('a[aria-label="previous-page"]')&.[]("href") == "/", "pagination returns home")
   check(File.read(File.join(output, "page2/index.html")).include?("https://nanx.cc/archives/"), "legacy redirect survives new pagination")
 end
-puts "PASS: zero-post homepage, pinned posts, archive isolation and future pagination"
+puts "PASS: zero-post homepage, pinned posts, archive isolation, pagination, sharing and opt-in comments"

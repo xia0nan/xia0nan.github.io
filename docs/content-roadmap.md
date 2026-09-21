@@ -2,6 +2,8 @@
 
 Reference for the next writing phase. These are proposed articles, not published posts or finished drafts. This directory is excluded from the website build.
 
+For corrections and editing of the six historical articles, see the [archive rewrite plan and editorial guidelines](archive-rewrite-plan.md). The new-content roadmap below remains unchanged.
+
 ## Editorial direction
 
 **Shawn Xiao — AI / ML Engineer & Data Scientist**

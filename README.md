@@ -25,7 +25,7 @@ bundle exec ruby tools/test_home.rb
 bundle exec htmlproofer _site --disable-external --no-enforce-https
 ```
 
-The checks verify the six historical article bodies against the pre-migration baseline, URLs, archive/search/feed visibility, canonical metadata, redirects, and exclusion of unpublished material. Temporary fixtures test an empty homepage, pinned posts and two-page pagination without adding content to the real site.
+The checks verify the six historical article bodies against the reviewed archive baseline, URLs, archive/search/feed visibility, canonical metadata, redirects, and exclusion of unpublished material. Temporary fixtures test an empty homepage, pinned posts and two-page pagination without adding content to the real site.
 
 External link checking and HTTPS enforcement for outbound links are disabled because historical articles retain their original HTTP references. Internal links and fragment targets remain checked. The website itself uses HTTPS.
 
@@ -65,7 +65,7 @@ Categories and Tags navigation, a curated Projects page, and new articles are de
 
 ## Historical archives
 
-The six original articles remain in `_posts` with `archived: true`, `hidden: true`, and fixed original permalinks. Keep both flags together. `hidden` removes them from homepage pagination; `archived` adds the historical notice and removes them from Recently Updated. Their bodies, dates, titles, images and heading anchors are preserved. Do not remove the fixed permalinks when adding categories.
+The six original articles remain in `_posts` with `archived: true`, `hidden: true`, and fixed original permalinks. Keep both flags together. `hidden` removes them from homepage pagination; `archived` adds the historical notice and removes them from Recently Updated. Publication dates, historical images, and heading destinations are preserved; bodies and titles may receive reviewed corrections under the policy below. Do not remove the fixed permalinks when adding categories.
 
 Compatibility routes:
 
@@ -74,7 +74,13 @@ Compatibility routes:
 - `/page2/` redirects to `/archives/`; new homepage pagination uses `/page/:num/`.
 - `/atom.xml` retains the original feed endpoint and article entry IDs.
 
-The migration baseline in `tools/archive-baseline.json` protects the original bodies. If an intentional historical correction is needed later, review it explicitly before updating that baseline.
+### Historical correction policy
+
+The baseline in `tools/archive-baseline.json` protects the reviewed article bodies and titles. The original versions remain available in Git history. Follow the [archive rewrite plan](docs/archive-rewrite-plan.md) when correcting the archive: preserve the author's experience and opinions, support factual corrections with sources, and do not invent recollections or experimental results.
+
+Use `last_modified_at` with the actual revision date for substantive changes. Add a visible, dated correction note when changing a technical article's method or conclusions; keep present-day course guidance separate from the historical review. Copyedits alone do not need a new modification date.
+
+Review each article diff before changing only its intended body hash and title expectation in the baseline. Keep publication dates, URLs, archive flags, feed IDs, comment mappings, and the archive banner intact. Preserve old heading IDs or add aliases when reorganizing sections. Run all validation commands above and inspect the rendered posts, including mobile layouts, before publishing. Do not weaken archive checks to accommodate a rewrite.
 
 ## Theme maintenance
 

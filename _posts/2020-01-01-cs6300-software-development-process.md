@@ -4,31 +4,19 @@ title: CS6300 Software Development Process
 archived: true
 hidden: true
 permalink: /2020/01/01/cs6300-software-development-process.html
+last_modified_at: 2026-09-22
 ---
 
-[**Course Link**](http://www.omscs.gatech.edu/cs-6300-software-development-process)
+[**Course Link**](https://omscs.gatech.edu/cs-6300-software-development-process)
 
-First of all, this is an easy course even for people like me with no prior Java experience. My final grade should be around 97%(A).
+I found this course manageable even without prior Java experience. My final grade should be around 97%, an A, though that was still an estimate when I wrote this.
 
-The course itself is great, containing many key concepts in software engineering. It even worth revisiting after the semester end. Syllabus shown [here](https://docs.google.com/document/d/1P4CU0LK-qoNywol7zeAp8WulaDf33IAAR05nI9bteeo/edit).
+The course covered software engineering concepts that I thought were worth revisiting after the semester. I also learned to use IntelliJ and Android Studio through the projects.
 
-Also, I learned how to use **IntelliJ** and **Android Studio** for the semester projects. That's a nice start since I always want to embeded tensorflow.js into an Android to build a ML based simple app. The most interesting experience I got from this course is to work distantly with 3 other teammates from the states. It's definitely a culture shock. Basically the whole project is done asynchronously. Now I understand with the highly developed workflow, it's totally possible to work remotely. Cutting off unnecessary meetings may not be a bad idea to boost productivity.
+The most interesting part was working remotely with three teammates in the US. It was a bit of a culture shock: almost the whole project happened asynchronously. Seeing that work changed my sense of what a remote team could get done. Cutting unnecessary meetings may not be a bad idea, provided the team has a way to keep the work moving. It worked for our group; other groups may need a different rhythm.
 
-Finally, this might be a common problem for this master course. I need to consolidate information from all channels: Slack, Piazza, YouTube for relavant videos, and so on. The lecture itself is very interesting but the assignment will often take some extra efforts.
+One less enjoyable part was gathering information from several places: Slack, Piazza, and extra videos on YouTube. I liked the lectures, but the assignments often needed more digging than the lectures alone provided.
 
-Finally, this is the recommended resources for this course:
-- Git
-	- https://www.atlassian.com/git/tutorials
-	- https://github.com/progit/progit2
-- Java
-	- https://www.codecademy.com/learn/learn-java
-	- https://www.guru99.com/java-tutorial.html
-- IntelliJ
-	- https://www.youtube.com/watch?v=Bld3644bIAo
-	- https://www.youtube.com/watch?v=c0efB_CKOYo&list=PLPZy-hmwOdEXdOtXdFzyx_XCnrF_oD2Ft
-- Android Studio
-	- https://www.youtube.com/watch?v=g9YblXBQ5uU&t=11s
-	- https://www.youtube.com/watch?v=dFlPARW5IX8&t=694s
-- Flow Chart
-	- http://lucidchart.com/
+For preparation, getting comfortable with Git and Java would make the start less rushed. Two useful references are the [Atlassian Git tutorials](https://www.atlassian.com/git/tutorials) and the [Java learning guide](https://dev.java/learn/).
 
+> **Preparation note — 22 September 2026:** The current [official course page](https://omscs.gatech.edu/cs-6300-software-development-process) recommends familiarity with Java and basic software engineering, plus an undergraduate software engineering course or industry experience. My lack of Java experience in 2019 should not be read as the course's recommended starting point.

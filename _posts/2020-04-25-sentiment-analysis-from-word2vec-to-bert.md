@@ -1,377 +1,137 @@
 ---
 layout: post
-title: Sentiment Analysis from Word2Vec to BERT - A Comprehensive Guide
+title: "Sentiment Analysis from Word2Vec to BERT: Comparing Approaches"
 archived: true
 hidden: true
 permalink: /2020/04/25/sentiment-analysis-from-word2vec-to-bert.html
+last_modified_at: 2026-09-22
 ---
 
-## Table of Contents
+> **Correction — 22 September 2026:** The earlier version presented incomplete code as a working guide and gave accuracy figures without recorded runs to support them. I've removed those figures and replaced the scripts with a conceptual comparison. The pseudocode below describes how an experiment could be built; it has not been run as a benchmark.
 
-- [Overview](#overview)
-- [Dataset and Exploratory Data Analysis](#dataset-and-exploratory-data-analysis)
-- [Text Preprocessing](#text-preprocessing)
-- [Word Embeddings Approach](#word-embeddings-approach)
-- [LSTM-Based Approach](#lstm-based-approach)
-- [BERT-Based Approach](#bert-based-approach)
-- [Model Evaluation and Comparison](#model-evaluation-and-comparison)
-- [Results and Performance Comparison](#results-and-performance-comparison)
-- [Conclusion](#conclusion)
+<span id="table-of-contents"></span>
 
-Sentiment analysis is one of the fundamental tasks in Natural Language Processing (NLP), with applications ranging from social media monitoring to customer feedback analysis. This comprehensive guide walks through different approaches to sentiment analysis, from traditional word embeddings to state-of-the-art transformer models, using the IMDB movie reviews dataset as our example.
+## What are we comparing?
+{: #overview }
 
-## Overview
+A movie review can call the acting good and still dislike the movie. Turning that review into a single positive or negative label means deciding how much of the wording, order, and context the model gets to see.
 
-We'll explore various techniques for sentiment analysis, implementing each approach with practical code examples. Our journey will cover:
-- Data exploration and preprocessing
-- Traditional word embedding approaches
-- Advanced neural architectures
-- Modern transformer-based solutions
+Here are four ways to do it: TF-IDF with logistic regression, averaged Word2Vec with logistic regression, a bidirectional LSTM, and BERT. The useful comparison starts with what each model receives as input. A list of accuracy numbers would need a separate, reproducible experiment.
 
-Let's begin with loading and examining our dataset.
+## The IMDb dataset
+{: #dataset-and-exploratory-data-analysis }
 
-## Dataset and Exploratory Data Analysis
+The [IMDb dataset](https://ai.stanford.edu/~amaas/data/sentiment/) has 25,000 labeled training reviews and 25,000 labeled test reviews. Each split is balanced between positive and negative sentiment. There are also 50,000 unlabeled reviews, which are outside the setup described here.
 
-The IMDB dataset contains 50,000 movie reviews split evenly between training and test sets, with balanced positive and negative sentiments. Let's explore this data:
+For an experiment, draw a validation set from the labeled training split before fitting anything. Use the remaining training reviews to learn the model and any vocabulary or statistics needed to prepare its inputs. The validation set is for choosing settings; the test set stays aside until those choices are finished.
 
-```python
-import pandas as pd
-import numpy as np
-from datasets import load_dataset
-import matplotlib.pyplot as plt
-import seaborn as sns
+Review length is worth inspecting on the training data, especially before choosing how much text a sequence model will keep. I don't have a recorded length analysis to report here.
 
-# Load IMDB dataset
-dataset = load_dataset("imdb")
-train_data = dataset["train"]
-test_data = dataset["test"]
+## Preprocessing depends on the model
+{: #text-preprocessing }
 
-# Convert to pandas for easier analysis
-train_df = pd.DataFrame(train_data)
-test_df = pd.DataFrame(test_data)
+Removing words can remove the answer. “Not good” should not become “good” because a stopword list happened to include “not.” Keep negation, and check what the tokenizer does with contractions before applying it to the whole dataset.
 
-# Basic statistics
-print(f"Training set size: {len(train_df)}")
-print(f"Test set size: {len(test_df)}")
-print(f"\nLabel distribution:\n{train_df['label'].value_counts()}")
+For TF-IDF and Word2Vec, decide how to handle case, punctuation, and HTML markup, then apply the same rules to every split. Learn vocabularies, document frequencies, and any locally trained word vectors from the training subset only. For a BiLSTM, fit its token vocabulary there too, with an unknown-token rule for words seen later.
 
-# Text length distribution
-train_df['text_length'] = train_df['text'].str.len()
+For BERT, pass the review text to the tokenizer supplied with the chosen checkpoint. It handles the model's subword vocabulary and special tokens. The old stopword-removal and lemmatization pipeline does not belong in front of it. Padding and truncation still need explicit choices.
 
-plt.figure(figsize=(10, 6))
-sns.histplot(data=train_df, x='text_length', bins=50)
-plt.title('Distribution of Review Lengths')
-plt.xlabel('Length of Review')
-plt.ylabel('Count')
-plt.show()
+## Start with TF-IDF and logistic regression
+
+TF-IDF represents a review through its terms and their weights. Logistic regression learns how those features relate to the sentiment label. Word bigrams can preserve short phrases such as “not good,” although this still loses most sentence structure. The [scikit-learn text-feature guide](https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction) explains the representation and its limits.
+
+**Pseudocode — not executable Python:**
+
+```text
+fit TF-IDF vocabulary and document frequencies on training reviews
+transform training and validation reviews with that fitted vectorizer
+fit logistic regression on training vectors and sentiment labels
+choose n-gram range and regularization using validation scores
 ```
 
-This initial analysis reveals several important characteristics of our dataset:
-- 25,000 training examples and 25,000 test examples
-- Perfectly balanced classes (50% positive, 50% negative)
-- Variable review lengths, with most reviews between 500 and 2500 characters
+This gives the other approaches a baseline to compare against. Moving to embeddings does not, by itself, establish an improvement.
 
-## Text Preprocessing
+## Averaged Word2Vec still needs a classifier
+{: #word-embeddings-approach }
 
-Before applying any modeling technique, we need to clean and standardize our text data. Here's a comprehensive preprocessing pipeline:
+[Word2Vec](https://radimrehurek.com/gensim/models/word2vec.html) learns a vector for each word from its surrounding words. Those vectors are features, not positive or negative predictions. One way to represent a whole review is to average its known word vectors, then train logistic regression on the resulting review vectors.
 
-```python
-import re
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
+**Pseudocode — not executable Python:**
 
-class TextPreprocessor:
-    def __init__(self):
-        self.lemmatizer = WordNetLemmatizer()
-        self.stop_words = set(stopwords.words('english'))
-    
-    def clean_text(self, text):
-        # Convert to lowercase
-        text = text.lower()
-        
-        # Remove HTML tags
-        text = re.sub(r']+>', '', text)
-        
-        # Remove special characters and digits
-        text = re.sub(r'[^a-zA-Z\s]', '', text)
-        
-        # Remove extra whitespace
-        text = re.sub(r'\s+', ' ', text).strip()
-        
-        return text
-    
-    def process(self, text, remove_stopwords=True):
-        # Clean text
-        text = self.clean_text(text)
-        
-        # Tokenize
-        tokens = word_tokenize(text)
-        
-        # Remove stopwords and lemmatize
-        if remove_stopwords:
-            tokens = [self.lemmatizer.lemmatize(token) 
-                     for token in tokens 
-                     if token not in self.stop_words]
-        else:
-            tokens = [self.lemmatizer.lemmatize(token) 
-                     for token in tokens]
-        
-        return ' '.join(tokens)
-
-# Preprocess the data
-preprocessor = TextPreprocessor()
-train_df['processed_text'] = train_df['text'].apply(preprocessor.process)
+```text
+train Word2Vec on tokenized training reviews
+for each review:
+    collect vectors for tokens in the learned vocabulary
+    average those vectors; use a zero vector if none are known
+fit logistic regression on training review vectors and sentiment labels
+transform validation reviews with the same Word2Vec model and averaging rule
+choose settings using validation scores
 ```
 
-This preprocessing pipeline:
-- Converts text to lowercase
-- Removes HTML tags and special characters
-- Tokenizes the text
-- Removes stopwords (optional)
-- Lemmatizes words to their base form
+The zero-vector fallback needs to be counted and inspected: a review with no known words gives the classifier no useful text features. Averaging also throws away word order. Each occurrence of a word contributes the same vector, whatever the sentence says around it.
 
-## Word Embeddings Approach
+The earlier code tried to multiply a vocabulary-sized TF-IDF array by a token-sized matrix of word vectors. Those dimensions do not generally match. Simple averaging makes the proposed representation clear without carrying that broken implementation forward.
 
-Let's implement sentiment analysis using Word2Vec embeddings with TF-IDF weighting:
+## A bidirectional LSTM reads a sequence
+{: #lstm-based-approach }
 
-```python
-from gensim.models import Word2Vec
-from sklearn.feature_extraction.text import TfidfVectorizer
+A BiLSTM receives an ordered sequence of token embeddings. Its forward and backward recurrent passes let the review representation depend on words before and after a token. A classification layer then maps that representation to sentiment. The [Keras bidirectional-layer documentation](https://keras.io/api/layers/recurrent_layers/bidirectional/) shows how the recurrent wrapper works.
 
-# Prepare data for Word2Vec
-tokenized_reviews = [review.split() for review in train_df['processed_text']]
+**Pseudocode — not executable Python:**
 
-# Train Word2Vec model
-w2v_model = Word2Vec(sentences=tokenized_reviews,
-                    vector_size=100,
-                    window=5,
-                    min_count=5,
-                    workers=4)
-
-# Function to get word vectors
-def get_word_vector(word):
-    try:
-        return w2v_model.wv[word]
-    except KeyError:
-        return np.zeros(100)  # Return zeros for OOV words
-
-# Create TF-IDF weighted Word2Vec
-tfidf = TfidfVectorizer()
-tfidf_matrix = tfidf.fit_transform(train_df['processed_text'])
-
-def get_weighted_word_vectors(text):
-    words = text.split()
-    word_vectors = np.array([get_word_vector(word) for word in words])
-    tfidf_weights = tfidf.transform([text]).toarray()[0]
-    weighted_vectors = word_vectors * tfidf_weights[:, np.newaxis]
-    return np.mean(weighted_vectors, axis=0)
+```text
+fit a token vocabulary on training reviews
+encode reviews, keeping token order and marking unknown words
+pad or truncate to a chosen length; mask padding
+train embedding -> bidirectional LSTM -> sentiment classification layer
+select sequence length and training checkpoint using validation scores
 ```
 
-## LSTM-Based Approach
+Keeping order gives this model information that averaging loses. It does not guarantee that the model will learn useful long-range relationships. Truncation can also cut out the part of a review that changes its meaning.
 
-Next, let's implement a more sophisticated approach using bidirectional LSTM:
+## Fine-tuning BERT
+{: #bert-based-approach }
 
-```python
-import tensorflow as tf
-from tensorflow.keras.preprocessing.text import Tokenizer
-from tensorflow.keras.preprocessing.sequence import pad_sequences
+[BERT](https://aclanthology.org/N19-1423/) starts from a pretrained transformer whose token representations depend on the surrounding text. For sentiment classification, add a classification head and fine-tune on labeled reviews.
 
-# Prepare data
-MAX_WORDS = 10000
-MAX_LEN = 200
+**Pseudocode — not executable Python:**
 
-tokenizer = Tokenizer(num_words=MAX_WORDS)
-tokenizer.fit_on_texts(train_df['processed_text'])
-
-X_train = pad_sequences(
-    tokenizer.texts_to_sequences(train_df['processed_text']),
-    maxlen=MAX_LEN
-)
-y_train = train_df['label'].values
-
-# Build LSTM model
-def create_lstm_model(vocab_size, embedding_dim=100):
-    model = tf.keras.Sequential([
-        tf.keras.layers.Embedding(vocab_size, embedding_dim, 
-                                input_length=MAX_LEN),
-        tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(64, 
-                                    return_sequences=True)),
-        tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(32)),
-        tf.keras.layers.Dense(64, activation='relu'),
-        tf.keras.layers.Dropout(0.5),
-        tf.keras.layers.Dense(1, activation='sigmoid')
-    ])
-    return model
-
-# Create and compile model
-model = create_lstm_model(MAX_WORDS + 1)
-model.compile(optimizer='adam',
-             loss='binary_crossentropy',
-             metrics=['accuracy'])
-
-# Train model
-history = model.fit(
-    X_train, y_train,
-    epochs=5,
-    batch_size=32,
-    validation_split=0.2,
-    callbacks=[
-        tf.keras.callbacks.EarlyStopping(
-            monitor='val_loss',
-            patience=2
-        )
-    ]
-)
+```text
+load a pretrained BERT checkpoint and its matching tokenizer
+tokenize review text with truncation and attention masks
+pad batches as needed
+fine-tune BERT and its classification head on training labels
+select learning rate and checkpoint using the validation set
 ```
 
-## BERT-Based Approach
+The [Hugging Face text-classification guide](https://huggingface.co/docs/transformers/main/tasks/sequence_classification) provides maintained implementation guidance using DistilBERT. Use the documentation for the library version you install. For the comparison proposed here, supply a validation split drawn from training data rather than using the held-out test set for checkpoint selection.
 
-Finally, let's implement sentiment analysis using BERT, representing the current state-of-the-art:
+Pretraining gives BERT a different starting point from the locally trained models above. Record the exact checkpoint and any known pretraining-data limitations when reporting results. Long reviews also need a stated truncation or chunking policy; a model cannot use the text it never receives.
 
-```python
-from transformers import (
-    BertTokenizer, 
-    BertForSequenceClassification, 
-    TrainingArguments, 
-    Trainer
-)
-import torch
-from torch.utils.data import Dataset
+## What a fair evaluation would require
+{: #model-evaluation-and-comparison }
 
-# Custom dataset class
-class IMDBDataset(Dataset):
-    def __init__(self, texts, labels, tokenizer, max_length=512):
-        self.encodings = tokenizer(texts, 
-                                 truncation=True,
-                                 padding=True,
-                                 max_length=max_length)
-        self.labels = labels
+Use the same training, validation, and test review IDs across the four approaches, while allowing each model its own preprocessing. Keep test reviews out of fitting and tuning, including unsupervised steps such as vocabulary building or Word2Vec training in this setup.
 
-    def __getitem__(self, idx):
-        item = {key: torch.tensor(val[idx]) 
-                for key, val in self.encodings.items()}
-        item['labels'] = torch.tensor(self.labels[idx])
-        return item
+Choose hyperparameters and any decision threshold on validation data. Once those choices are fixed, evaluate on the held-out test set. Record accuracy and F1, state which class is positive and how F1 is averaged, and inspect the confusion matrix. Save predictions so the reported scores can be checked later.
 
-    def __len__(self):
-        return len(self.labels)
+A reproducible comparison would also need split IDs, seeds, package versions, model settings, and saved checkpoints. Timing needs its own measurement: training time and inference latency or throughput, with hardware, batch size, and input lengths recorded. Repeated runs would help show how much the result depends on initialization.
 
-# Initialize tokenizer and model
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-model = BertForSequenceClassification.from_pretrained(
-    'bert-base-uncased',
-    num_labels=2
-)
+## What can be compared here
+{: #results-and-performance-comparison }
 
-# Create datasets
-train_dataset = IMDBDataset(
-    train_df['processed_text'].tolist(),
-    train_df['label'].tolist(),
-    tokenizer
-)
+There are no measured results in this revision. This table compares the proposed designs.
 
-# Define training arguments
-training_args = TrainingArguments(
-    output_dir='./results',
-    num_train_epochs=3,
-    per_device_train_batch_size=16,
-    per_device_eval_batch_size=64,
-    warmup_steps=500,
-    weight_decay=0.01,
-    logging_dir='./logs',
-)
+| Approach | Review representation and classifier | Main limitation to examine |
+| --- | --- | --- |
+| TF-IDF + logistic regression | Sparse term weights, linear classifier | Little word order beyond chosen n-grams |
+| Word2Vec + logistic regression | Mean of word vectors, linear classifier | Word order is lost; unknown words need a policy |
+| BiLSTM | Ordered embeddings, recurrent encoder and classification layer | Sequence length, padding, and training choices |
+| BERT | Pretrained contextual representations and classification head | Checkpoint choice, input limit, and fine-tuning choices |
 
-# Create trainer and train
-trainer = Trainer(
-    model=model,
-    args=training_args,
-    train_dataset=train_dataset,
-)
+For a deployment decision, measure on the text and hardware the application will actually use. A movie-review score cannot tell us how well the same model will handle customer complaints, and a model's name cannot tell us its serving latency.
 
-trainer.train()
-```
+## Where this leaves the comparison
+{: #conclusion }
 
-## Model Evaluation and Comparison
-
-Let's create a comprehensive evaluation framework:
-
-```python
-from sklearn.metrics import (
-    classification_report,
-    confusion_matrix,
-    roc_curve,
-    auc
-)
-
-def evaluate_model(y_true, y_pred, y_prob=None, model_name=""):
-    # Print classification report
-    print(f"\nClassification Report for {model_name}:")
-    print(classification_report(y_true, y_pred))
-    
-    # Plot confusion matrix
-    cm = confusion_matrix(y_true, y_pred)
-    plt.figure(figsize=(8, 6))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
-    plt.title(f'Confusion Matrix - {model_name}')
-    plt.ylabel('True Label')
-    plt.xlabel('Predicted Label')
-    plt.show()
-    
-    # Plot ROC curve if probabilities are available
-    if y_prob is not None:
-        fpr, tpr, _ = roc_curve(y_true, y_prob)
-        roc_auc = auc(fpr, tpr)
-        
-        plt.figure(figsize=(8, 6))
-        plt.plot(fpr, tpr, color='darkorange', lw=2, 
-                label=f'ROC curve (AUC = {roc_auc:.2f})')
-        plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
-        plt.xlim([0.0, 1.0])
-        plt.ylim([0.0, 1.05])
-        plt.xlabel('False Positive Rate')
-        plt.ylabel('True Positive Rate')
-        plt.title(f'ROC Curve - {model_name}')
-        plt.legend(loc="lower right")
-        plt.show()
-```
-
-## Results and Performance Comparison
-
-After training and evaluating all models, here are the key findings:
-
-1. Word2Vec + TF-IDF:
-   - Accuracy: ~86%
-   - Fast training and inference
-   - Lightweight model size
-
-2. Bidirectional LSTM:
-   - Accuracy: ~89%
-   - Better handling of long-range dependencies
-   - Moderate training time
-
-3. BERT:
-   - Accuracy: ~93%
-   - Best overall performance
-   - Longest training time and largest model size
-
-## Conclusion
-
-Our journey through different sentiment analysis approaches reveals several key insights:
-
-1. Model Selection Trade-offs:
-   - Simple word embedding approaches provide a good baseline with minimal computational requirements
-   - LSTM models offer a good balance of performance and complexity
-   - BERT achieves the best results but requires significant computational resources
-
-2. Practical Considerations:
-   - For production systems, consider the trade-off between accuracy and inference time
-   - BERT's superior performance might be worth the computational cost for accuracy-critical applications
-   - For real-time applications with limited resources, LSTM or even Word2Vec approaches might be more appropriate
-
-3. Future Directions:
-   - Explore domain-specific pre-training
-   - Investigate lightweight transformer architectures
-   - Consider multi-task learning approaches
-
-The choice of model should ultimately depend on your specific use case, taking into account factors like accuracy requirements, computational resources, and latency constraints.
+The open question is whether the extra context available to a sequence model improves the result enough to justify its cost for a particular task. Answering that needs recorded runs. A reproducible benchmark remains a separate project; this article stops at explaining the approaches and the experiment they would need.

@@ -4,45 +4,75 @@ title: Trading Book
 archived: true
 hidden: true
 permalink: /2020/02/26/trading-book.html
+last_modified_at: 2026-09-22
 ---
 
-![Final Result Comparison](/images/2020-02-26-final-compare.png)
+> **Correction — 22 September 2026:** The original post overstated what this experiment showed. The linked notebook trains and evaluates on the same period, and the implemented learner uses bagged randomized trees, not Q-learning. I've corrected the method and cost settings below. The chart is retained from the original post; the experiment has not been rerun for this revision.
 
 [**Project Link**](https://github.com/xia0nan/trading-book)
 
-## 1.Background
+## Why I built it
+{: id="1background" }
 
-I spent the last 2 days to build an algorithm trading [*starter notebook*](https://github.com/xia0nan/trading-book). It is essentially using a different approach compared to what we are doing now for the FX trading project. I would like to have this as an alternative starting point and compare the performance between 2 different approaches. To make it easier for others to compare, I took the data scientist poor engineering practice to commit data into a repo. The main techniques are learned from the course [Machine Learning for Trading](https://quantsoftware.gatech.edu/Machine_Learning_for_Trading_Course), taught by [Tucker Balch](https://www.cc.gatech.edu/~tucker/), who left Georgia Tech to work for JP Morgan now.
+I spent two days building an algorithmic trading starter notebook. At work we were taking a different approach to an FX trading project, and I wanted an alternative starting point that we could compare with it. The techniques came from Georgia Tech's [Machine Learning for Trading](https://omscs.gatech.edu/cs-7646-machine-learning-trading), taught by Tucker Balch when I took it.
 
-### 1.1 AWS setup
-I would like to recommend my favourite setup, by using [AWS Deeplearning AMI](https://aws.amazon.com/machine-learning/amis/) ([Google Cloud](https://cloud.google.com/deep-learning-vm) or [Azure](https://azure.microsoft.com/en-us/services/virtual-machines/data-science-virtual-machines/) are mostly the same based on my experience). A normal [p2.xlarge](https://aws.amazon.com/ec2/instance-types/p2/) would be more than sufficient. If you prefer to work with Jupyter notebook, Fast.ai has awesome documentation about the [setup](https://course.fast.ai/start_aws.html).
+I also committed the data to the repo to make the example easier to follow. Not my finest engineering practice, but it made sharing the experiment straightforward.
 
-### 1.2 Alternative setup
-Another highly recommended tool is Google's [colab](https://colab.research.google.com/). I almost always use it for an experiment. The only thing is we need a bit of setup to use Google drive to insert data. This [post](https://www.marktechpost.com/2019/06/07/how-to-connect-google-colab-with-google-drive/) showed how to connect Colab to Gdrive.
+## From prices to positions
+{: id="2method" }
 
-## 2.Method
-Financial data are normally time series data. So sequential models like [*LSTM*](https://colah.github.io/posts/2015-08-Understanding-LSTMs/) is a naturally a good choice, just like we used in our internal project. But in this notebook, we embedded time-series information into technical indicators, then for each day, apart from price, there are several technical indicators taking historical information as part of the input. In this way, we can use frameworks like Gradient boosted trees or Q-learning to train our dataset.
+Our internal project used an LSTM. For this notebook, I put historical price information into technical indicators so that each day became a row of features. That made it possible to use a tree-based learner without feeding it an entire sequence.
 
-### 2.1 Assumption
-We assume the [Efficient Market Hypothesis](https://www.investopedia.com/terms/e/efficientmarkethypothesis.asp) is not holding, or at least semi-strong or strong form do not hold. But it should be a common-sense for quantitative trading hedge fund like Renaissance Technologies. There should be some signals or correlations in stock prices, but not for all. We need some methods to find them out.
+### The question to test
+{: id="21-assumption" }
 
-### 2.2 Pipeline Demo
-The processing [pipeline](https://github.com/xia0nan/trading-book#pipeline) is shown in the *README.md*.
+Can these indicators help predict future returns well enough to improve on a benchmark after costs, on dates the learner has not seen? That is the hypothesis this project would need to test.
 
-The target of the model is 3 positions: *HOLD*, *BUY* and *SELL*. Each day we have price information about one stock, with selected technical indicators containing historical information. We trained the model to understand the position to take for each day, then based on the positions, we can find the holdings. Subsequently, we use daily holdings to calculate the orders we should make. Eventually, our final product is a *order book* of days we BUY or SELL particular stocks.
+The original post jumped from that possibility to rejecting the Efficient Market Hypothesis. That was too broad. Since the inputs come from historical prices, the relevant comparison is with weak-form efficiency, which concerns information in past prices and trading volume. The [CFA overview of market efficiency](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/market-efficiency) distinguishes this from the semi-strong and strong forms. This notebook does not establish a rejection of any of them.
 
-### 2.2.1 Backtesting
-The starting point of backtesting is orders file. We should treat backtesting separately, and it is probably the most important thing of the whole pipeline. What we need to make sure is that the **backtesting result and forward testing result are similar**. This is a crucial point. But not in the discussion of this post. This notebook is served as a starting point of exploration.
+### What the code implements
+{: id="22-pipeline-demo" }
 
-## 3.Result
-The experiment results without too much fine-tuning are shared in the [notebook](https://github.com/xia0nan/trading-book/blob/master/notebooks/05_ML_strategy.ipynb).
+The [historical StrategyLearner](https://github.com/xia0nan/trading-book/blob/e67a53ac9d26b576f62ac724e3ad04d8a839cf90/StrategyLearner.py) uses bagged randomized trees. The selected inputs are `upper_band`, `lower_band`, and `RSI`. Training labels come from subsequent returns and indicate a target position: short, cash, or long. This is supervised learning. Q-learning appears as an alternative in the code, but its constructor is commented out.
 
-In the experiment, the ML model is performed much better, but I set the risk free rate to 0 and market impact to the minimum. There many more concerns about the market environment. So to make sure the model would perform well in the real market, we need to spend extra effort in fine-tuning backtesting model.
+A position is different from an order. The strategy converts changes in target position into trades. Moving from cash to 1,000 shares long requires buying 1,000 shares. Moving from 1,000 shares long to 1,000 shares short requires selling 2,000. Keeping the same position requires no trade.
 
-## 4.Future work
-There are several things I would like to try out to make this notebook starter more robust.
-* Use deep reinforcement learning approach.
-* Use more mature frameworks like LightGBM, and process with more data.
-* Try stacking and other ensembling methods.
-* Integrate with news data.
-* Apply to Two Sigma's [kaggle competition](https://www.kaggle.com/c/two-sigma-financial-news)
+The output is an orders file containing dates, symbols, buy/sell directions, and share counts. Calling it an “order book,” as I did originally, was misleading.
+
+## What the demonstration shows
+{: id="3result" }
+
+The [historical notebook](https://github.com/xia0nan/trading-book/blob/e67a53ac9d26b576f62ac724e3ad04d8a839cf90/notebooks/05_ML_strategy.ipynb) compares the learned strategy with a manual strategy and a benchmark. It trains on JPM data from 2008–2009 and calls `testPolicy` on that same period. It defines a 2010–2011 period, but does not use it in the displayed evaluation.
+
+![Historical comparison of normalized portfolio values for the learned strategy, manual strategy, and benchmark](/images/2020-02-26-final-compare.png)
+_Original chart from the 2020 post. The linked notebook evaluates on the training period; this result has not been reproduced for the September 2026 correction._
+
+The learned strategy's curve looks encouraging, but an in-sample comparison cannot show how it would perform on unseen dates. The notebook uses zero transaction commission and an impact parameter of `0.005` for the learned and manual strategies. There is a cost assumption in the simulation; it is still a simplified one.
+
+### Backtesting still needs work
+{: id="221-backtesting" }
+
+The observed limitation is the reuse of the training period for evaluation. A next test would need a later, untouched period, with all model choices made beforehand and training labels kept from crossing the split boundary.
+
+Execution timing and leakage also need an audit: were the indicators available before the assumed trade, and did any preparation step use future information? Costs would need to cover realistic execution, including spreads, slippage, and short-borrow costs where relevant. Stock selection can introduce survivorship bias, and repeatedly trying strategies on the same period can turn it into another tuning set. These are issues to check, not findings from a completed audit of this repo.
+
+For now, the notebook demonstrates the path from indicators to positions, orders, and simulated portfolio values. It does not demonstrate live profitability.
+
+## The setup I used in 2020
+
+### AWS setup
+{: id="11-aws-setup" }
+
+At the time, my preferred setup was an AWS Deep Learning AMI. I suggested a `p2.xlarge` instance and the Fast.ai AWS setup notes. Those were 2020 recommendations, not a current hardware or pricing guide.
+
+### Alternative setup
+{: id="12-alternative-setup" }
+
+I also used Google Colab for experiments, with data loaded through Google Drive. That was a convenient alternative for me then. The old setup instructions should be treated as historical too.
+
+## Ideas I had for the next version
+{: id="4future-work" }
+
+My original list included deep reinforcement learning, LightGBM with more data, stacking, news data, and an entry in Two Sigma's financial-news Kaggle competition. These were ideas, not completed work.
+
+Before extending the model list, the experiment needs a chronological out-of-sample evaluation. That is the missing comparison in this two-day starter project.

@@ -82,6 +82,10 @@ Use `last_modified_at` with the actual revision date for substantive changes. Ad
 
 Review each article diff before changing only its intended body hash and title expectation in the baseline. Keep publication dates, URLs, archive flags, feed IDs, comment mappings, and the archive banner intact. Preserve old heading IDs or add aliases when reorganizing sections. Run all validation commands above and inspect the rendered posts, including mobile layouts, before publishing. Do not weaken archive checks to accommodate a rewrite.
 
+### Companion notebooks
+
+The sentiment article includes a [completed Colab notebook](notebooks/README.md) with saved code and outputs. Readers can use the article's **nbviewer** link to view the walkthrough without running it, or open Colab to experiment. Keep the saved outputs and distinguish validation results from held-out test results when updating the article. Jekyll serves the `.ipynb` as a downloadable static file; no notebook execution is part of the site build.
+
 ## Theme maintenance
 
 Most UI comes from the gem. Local overrides provide the introduction and empty-home behavior, archive notice, filtered Recently Updated panel, accessible viewport metadata, existing favicon links, feed discovery, and copyright wording. Review those overrides against upstream when upgrading the pinned theme. Styles retain Chirpy’s standard light/dark appearance.
